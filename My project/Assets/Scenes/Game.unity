@@ -251,8 +251,8 @@ GameObject:
   - component: {fileID: 1212484676}
   - component: {fileID: 1212484677}
   m_Layer: 0
-  m_Name: Circle
-  m_TagString: Untagged
+  m_Name: Player 2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,11 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824758db9f459cd44908b02dc55dd713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
-  horizontal: 0
-  vertical: 0
-  moveLimiter: 0.7
-  runSpeed: 20
 --- !u!50 &1212484677
 Rigidbody2D:
   serializedVersion: 4
@@ -375,8 +370,8 @@ GameObject:
   - component: {fileID: 1849354848}
   - component: {fileID: 1849354847}
   m_Layer: 0
-  m_Name: Circle (1)
-  m_TagString: Untagged
+  m_Name: Player 1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,11 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
-  horizontal: 0
-  vertical: 0
-  moveLimiter: 0.7
-  runSpeed: 20
+  playerPrefab: {fileID: 0}
 --- !u!212 &1849354849
 SpriteRenderer:
   m_ObjectHideFlags: 0
