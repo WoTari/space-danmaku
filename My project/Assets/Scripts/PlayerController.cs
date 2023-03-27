@@ -15,6 +15,16 @@ using UnityEngine;
     public int bomb = 5;
 
 
+    // Player loses hp when hit by enemy
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(hp);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            hp--;
+        }
+    }
+
     void Update()
     {
         // Game Border
@@ -81,12 +91,6 @@ using UnityEngine;
                 {
                     // input koodi here
                 }
-            }
-
-            // Ultimate
-            if (Input.GetButton("Ultimate"))
-            {
-                // input coderino here
             }
         }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Boss1Movement : MonoBehaviour
+public class Boss1Controller : MonoBehaviour
 {
     [SerializeField]
     private Transform[] waypoints;
@@ -10,10 +10,6 @@ public class Boss1Movement : MonoBehaviour
 
     private int waypoint = 0;
 
-    private void Start()
-    {
-
-    }
     private void Update()
     {
         Move();
