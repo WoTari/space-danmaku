@@ -790,8 +790,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   speed: 0.5
+  Enemy: {fileID: 1168448305}
   bulletPrefab: {fileID: 2186075694341854615, guid: ea10c6dbf249dad4aa463dbab133cddf, type: 3}
+  bombPrefab: {fileID: 310689115517706387, guid: 88462f78ee94b0f46a724490ddff84ee, type: 3}
   fireRate: 0.07
+  bombTime: 5
+  bombSpeed: 100
   hp: 3
   bomb: 5
 --- !u!212 &1849354849
