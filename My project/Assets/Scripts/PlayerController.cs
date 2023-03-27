@@ -20,6 +20,16 @@ using UnityEngine;
     public int bomb = 5;
 
 
+    // Player loses hp when hit by enemy
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(hp);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            hp--;
+        }
+    }
+
     void Update()
     {
         // Game Border
