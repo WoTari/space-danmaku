@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,14 @@ using UnityEngine;
     private bool canFire = true;
     public bool isAlive = true;
     public float speed = 0.50f;
+    public GameObject Enemy;
     public GameObject bulletPrefab;
+    public GameObject bombPrefab;
     private float xRange = 100;
     private float yRange = 100;
     public float fireRate = 0.07f;
+    public float bombTime = 5f;
+    public float bombSpeed = 100f;
     public int hp = 3;
     public int bomb = 5;
 
@@ -73,20 +78,27 @@ using UnityEngine;
                 yield return new WaitForSeconds(fireRate);
                 canFire = true;
             }
-
-            // Bomb
-            if (bomb != 0)
+            IEnumerator WaitForBomb()
             {
-                if (Input.GetButton("Bomb"))
-                {
-                    // input koodi here
-                }
+                yield return new WaitForSeconds(bombTime);
+                canFire = true;
             }
 
-            // Ultimate
-            if (Input.GetButton("Ultimate"))
+            // Bomb
+            if (Input.GetButton("Bomb"))
             {
-                // input coderino here
+                Bomb();
+
+            }
+            void Bomb()
+            {
+                if (bomb != 0 && canFire)
+                {
+                    Instantiate(bombPrefab, transform.position, bombPrefab.transform.rotation);
+                    bomb--;
+                    StartCoroutine(WaitForBomb());
+                    canFire = false;
+                }
             }
         }
 
@@ -95,5 +107,6 @@ using UnityEngine;
         {
             isAlive = false;
         }
+        }
+
     }
- }
