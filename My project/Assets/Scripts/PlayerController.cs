@@ -1,33 +1,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
  public class PlayerController : MonoBehaviour
  {
-    private bool canFire = true;
+    // other
+    public bool canFire = true;
     public bool isAlive = true;
-    public float speed = 0.50f;
-    public GameObject Enemy;
+    public float playerSpeed = 0.50f;
     public GameObject bulletPrefab;
     public GameObject bombPrefab;
     private float xRange = 100;
     private float yRange = 100;
-    public float fireRate = 0.07f;
-    public float bombTime = 5f;
-    public float bombSpeed = 100f;
-    public int hp = 3;
-    public int bomb = 5;
 
+    // player
+    public int playerHp = 3;
+    public int bomb = 5;
+    public float bulletFirerate = 0.07f;
 
     // Player loses hp when hit by enemy
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(hp);
         if (collision.gameObject.tag == "Enemy")
         {
-            hp--;
+            playerHp--;
         }
+    }
+
+    private void Start()
+    {
+        BulletController bulletController = GetComponent<BulletController>();
     }
 
     void Update()
@@ -51,22 +55,22 @@ using UnityEngine;
         }
 
         // Player is not dead
-        if (hp != 0)
+        if (playerHp != 0)
         {
             // Movement
-            float vertical = Input.GetAxisRaw("Vertical") * speed;
-            float horizontal = Input.GetAxisRaw("Horizontal") * speed;
+            float vertical = Input.GetAxisRaw("Vertical") * playerSpeed;
+            float horizontal = Input.GetAxisRaw("Horizontal") * playerSpeed;
 
             transform.Translate(0, vertical, 0);
             transform.Translate(horizontal, 0, 0);
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                speed = speed / 3;
+                playerSpeed = playerSpeed / 3;
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                speed = 0.50f;
+                playerSpeed = 0.50f;
             }
 
             // Shooting
@@ -78,36 +82,27 @@ using UnityEngine;
             void Fire()
             {
                 Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
-
                 canFire = false;
                 StartCoroutine(WaitForFire());
             }
 
             IEnumerator WaitForFire()
             {
-                yield return new WaitForSeconds(fireRate);
-                canFire = true;
-            }
-            IEnumerator WaitForBomb()
-            {
-                yield return new WaitForSeconds(bombTime);
+                yield return new WaitForSeconds(bulletFirerate);
                 canFire = true;
             }
 
-            // Bomb
-            if (Input.GetButton("Bomb"))
-            {
-                Bomb();
-
-            }
-            void Bomb()
+        // Bomb
+        if (Input.GetButton("Bomb") && bomb != 0)
             {
                 if (bomb != 0 && canFire)
                 {
-                    Instantiate(bombPrefab, transform.position, bombPrefab.transform.rotation);
+                    GameObject bombObject = Instantiate(bombPrefab, transform.position, bombPrefab.transform.rotation);
+                    BulletController bombController = bombObject.GetComponent<BulletController>();
+                    bombController.Bomb();
                     bomb--;
-                    StartCoroutine(WaitForBomb());
                     canFire = false;
+                    StartCoroutine(bombController.WaitForBomb());
                 }
             }
         }
@@ -116,7 +111,6 @@ using UnityEngine;
         else
         {
             isAlive = false;
-        }
-        }
-
+        } 
     }
+}

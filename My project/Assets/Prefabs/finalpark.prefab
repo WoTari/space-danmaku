@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4735952428919124130}
   m_Layer: 0
   m_Name: finalpark
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,3 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 100
+  bulletDamage: 0.5
+  bombPrefab: {fileID: 0}
+  bombDamage: 250
+  bombFirerate: 5
+  bombSpeed: 300
