@@ -7,13 +7,10 @@ public class Boss1Controller : MonoBehaviour
     public float currentHp = 1000;
     private int waypoint = 0;
     public HealthBar hpBar;
-    public BulletController bulletController;
+    public BossTimer timer;
 
-    [SerializeField]
-    private Transform[] waypoints;
-
-    [SerializeField]
-    private float moveSpeed = 2f;
+    [SerializeField] private Transform[] waypoints;
+    [SerializeField] private float moveSpeed = 2f;
 
     void OnTriggerEnter2D(Collider2D controller)
     {
@@ -67,7 +64,7 @@ public class Boss1Controller : MonoBehaviour
     // Method kills enemy when hp reaches 0
     private void Death ()
     {
-        if (currentHp <= 0)
+        if (currentHp <= 0 || timer.currentTime <= 0)
         {
             Destroy(gameObject);
             // here code for starting next phase of the boss yes ok good
