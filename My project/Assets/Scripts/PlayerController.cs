@@ -9,16 +9,17 @@ using UnityEngine;
     // other
     public bool canFire = true;
     public bool isAlive = true;
-    public float playerSpeed = 0.50f;
     public GameObject bulletPrefab;
     public GameObject bombPrefab;
-    private float xRange = 100;
+    private float xRangeNegative = -138;
+    private float xRangePositive = 100;
     private float yRange = 100;
 
     // player
     public int playerHp = 3;
     public int bomb = 5;
     public float bulletFirerate = 0.07f;
+    public float playerSpeed = 0.60f;
 
     // Player loses hp when hit by enemy
     void OnTriggerEnter2D(Collider2D collision)
@@ -37,13 +38,13 @@ using UnityEngine;
     void Update()
     {
         // Game Border
-        if (transform.position.x < -xRange)
+        if (transform.position.x < xRangeNegative)
         {
-            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(xRangeNegative, transform.position.y, transform.position.z);
         }
-        if (transform.position.x > xRange)
+        if (transform.position.x > xRangePositive)
         {
-            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(xRangePositive, transform.position.y, transform.position.z);
         }
         if (transform.position.y > yRange)
         {
@@ -110,6 +111,7 @@ using UnityEngine;
         // Player is dead
         else
         {
+            Debug.Log("game over idiot");
             isAlive = false;
         } 
     }

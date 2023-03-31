@@ -17,7 +17,6 @@ public class Boss1Controller : MonoBehaviour
         // Takes hp away from enemy if player hits them with a bullet
         if (controller.gameObject.tag == "PlayerProjectile")
         {
-            Debug.Log("osu!");
             BulletController c = controller.GetComponent<BulletController>();
             currentHp -= c.bulletDamage;
             hpBar.SetMaxHp(currentHp);
@@ -26,7 +25,6 @@ public class Boss1Controller : MonoBehaviour
         // Takes hp away from enemy if player hits them with a bomb
         else if (controller.gameObject.tag == "PlayerBomb")
         {
-            Debug.Log("osu!");
             BulletController b = controller.GetComponent<BulletController>();
             currentHp -= b.bombDamage;
             hpBar.SetMaxHp(currentHp);
@@ -42,7 +40,7 @@ public class Boss1Controller : MonoBehaviour
     // Method that makes the enemy move
     private void Move()
     {
-
+        Debug.Log("test lol ok");
         // If enemy reached the last waypoint then it stops
         if (waypoint <= waypoints.Length - 1)
         {
