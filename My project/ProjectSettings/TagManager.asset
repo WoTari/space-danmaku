@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Undefined
   - PlayerProjectile
   - PlayerBomb
+  - LargePower
+  - SmallPower
   layers:
   - Default
   - TransparentFX

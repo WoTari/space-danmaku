@@ -40,7 +40,6 @@ public class Boss1Controller : MonoBehaviour
     // Method that makes the enemy move
     private void Move()
     {
-        Debug.Log("test lol ok");
         // If enemy reached the last waypoint then it stops
         if (waypoint <= waypoints.Length - 1)
         {

@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
- public class PlayerController : MonoBehaviour
- {
+public class PlayerController : MonoBehaviour
+{
     // other
     public bool canFire = true;
     public bool isAlive = true;
@@ -14,26 +15,73 @@ using UnityEngine;
     private float xRangeNegative = -138;
     private float xRangePositive = 100;
     private float yRange = 100;
+    public PowerController powerController;
+    public BulletController bulletController;
 
     // player
     public int playerHp = 3;
     public int bomb = 5;
     public float bulletFirerate = 0.07f;
     public float playerSpeed = 0.60f;
+    public GameObject healthPrefab;
+    public GameObject bombsPrefab;
+    private List<GameObject> health;
+    private List<GameObject> bombs;
+    public float power = 0;
+    public int level = 0;
+   
 
-    // Player loses hp when hit by enemy
+    void Start()
+    {
+        BulletController bulletController = GetComponent<BulletController>();
+
+        // Player Health
+        health = new List<GameObject>();
+        GameObject healthUI = GameObject.Find("PlayerHp");
+
+        for (int i = 0; i < playerHp; i++)
+        {
+            health.Add(Instantiate(healthPrefab, healthUI.transform.position + i * new Vector3(10, 0, 0), healthPrefab.transform.rotation));
+        }
+
+        // Player Bombs
+        bombs = new List<GameObject>();
+        GameObject bombsUI = GameObject.Find("PlayerBombs");
+        
+        for (int u = 0; u < bomb; u++)
+        {
+            bombs.Add(Instantiate(bombsPrefab, bombsUI.transform.position + u * new Vector3(10, 0, 0), bombsPrefab.transform.rotation));
+        }
+
+        PowerController powerController = GetComponent<PowerController>();
+    }
+
+    // Player collides with enemy
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            int i = health.Count - 1;
             playerHp--;
+
+            // Removes a heart from player UI when player takes a hit
+            Destroy(health[i]);
+            health.RemoveAt(i);
+        }
+
+        // If Player collects a power box, gives power to the player
+        else if (collision.gameObject.tag == "SmallPower")
+        {
+            power += powerController.smallPowerAmount;
+        }
+
+        else if (collision.gameObject.tag == "LargePower")
+        {
+            power += powerController.largePowerAmount;
         }
     }
 
-    private void Start()
-    {
-        BulletController bulletController = GetComponent<BulletController>();
-    }
+    
 
     void Update()
     {
@@ -93,8 +141,8 @@ using UnityEngine;
                 canFire = true;
             }
 
-        // Bomb
-        if (Input.GetButton("Bomb") && bomb != 0)
+            // Bomb
+            if (Input.GetButton("Bomb") && bomb != 0)
             {
                 if (bomb != 0 && canFire)
                 {
@@ -104,6 +152,11 @@ using UnityEngine;
                     bomb--;
                     canFire = false;
                     StartCoroutine(bombController.WaitForBomb());
+
+                    // Removes a bomb from player UI when player uses a bomb
+                    int y = bombs.Count - 1;
+                    Destroy(bombs[y]);
+                    bombs.RemoveAt(y);
                 }
             }
         }
@@ -111,8 +164,11 @@ using UnityEngine;
         // Player is dead
         else
         {
-            Debug.Log("game over idiot");
-            isAlive = false;
-        } 
+            if (isAlive)
+            {
+                Debug.Log("game over idiot");
+                isAlive = false;
+            }
+        }
     }
 }

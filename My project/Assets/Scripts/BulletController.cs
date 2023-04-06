@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
 
     // bullet
     public float bulletSpeed = 100f;
-    public float bulletDamage = 0.5f;
+    public float bulletDamage = 0.001f;
 
     // other
     private float yRange = 100;
@@ -38,7 +38,7 @@ public class BulletController : MonoBehaviour
         // Bullet movement
         transform.Translate(Vector3.up * Time.deltaTime * bulletSpeed);
 
-        // Bullet gets destroyed when colliding with the boundaries of the game
+        // Bullet gets destroyed when ít goes past the boundaries of the game
         if (transform.position.y >= yRange)
         {
             Destroy(gameObject);
