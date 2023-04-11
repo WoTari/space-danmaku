@@ -124,6 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024c7d40cb4ca0b4c98e15bb100609c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream:My project/Assets/Prefabs/small_power 1 1.prefab
   powerSmall: {fileID: 3206818641514186021}
   speed: 0.21
+=======
+  powerSmall: {fileID: 1549892271102059561}
+  speed: 0.4
+>>>>>>> Stashed changes:My project/Assets/Prefabs/small_power.prefab
   destroyPowerAt: 110
