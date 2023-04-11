@@ -8,30 +8,36 @@ public class Boss1Controller : MonoBehaviour
     private int waypoint = 0;
     public HealthBar hpBar;
     public BossTimer timer;
+    private PlayerController playerController;
 
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float moveSpeed = 2f;
 
-    void OnTriggerEnter2D(Collider2D controller)
+    void Start()
+    {
+        //
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
     {
         // Takes hp away from enemy if player hits them with a bullet
-        if (controller.gameObject.tag == "PlayerProjectile")
+        if (collider.gameObject.tag == "PlayerProjectile")
         {
-            BulletController c = controller.GetComponent<BulletController>();
-            currentHp -= c.bulletDamage;
+            GameObject player = GameObject.Find("Player");
+            playerController = player.GetComponent<PlayerController>();
+            currentHp -= playerController.bulletDamage;
             hpBar.SetMaxHp(currentHp);
         }
 
         // Takes hp away from enemy if player hits them with a bomb
-        else if (controller.gameObject.tag == "PlayerBomb")
+        else if (collider.gameObject.tag == "PlayerBomb")
         {
-            BulletController b = controller.GetComponent<BulletController>();
-            currentHp -= b.bombDamage;
+            currentHp -= playerController.bombDamage;
             hpBar.SetMaxHp(currentHp);
         }
     }
 
-    private void Update()
+    void Update()
     {
         Move();
         Death();

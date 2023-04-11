@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 550
-  bulletDamage: 10
   bombPrefab: {fileID: 0}
   bombDamage: 250
-  bombFirerate: 5
+  bombFireRate: 5
   bombSpeed: 300
 --- !u!212 &6796695797676419106
 SpriteRenderer:

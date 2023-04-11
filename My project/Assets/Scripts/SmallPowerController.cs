@@ -9,14 +9,6 @@ public class SmallPowerController : MonoBehaviour
     public float speed = 0.35f;
     public float destroyPowerAt = 110f;
 
-    void OnCollisionEnter2D(Collision2D collision) 
-    {
-        if (collision.gameObject.tag == "SmallPower")
-        {
-            Destroy(gameObject);
-        }
-    }
-
 void Update()
     {
         // Moves the power on the y axis

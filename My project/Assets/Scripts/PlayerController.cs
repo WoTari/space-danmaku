@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,32 +10,51 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // other
-    public bool canFire = true;
-    public bool isAlive = true;
+    public PowerController powerController;
+    public BulletController bulletController;
     public GameObject bulletPrefab;
     public GameObject bombPrefab;
+
+    public bool canFireBullet = true;
+    public bool canFireBomb = true;
+    public bool isAlive = true;
+    private float cooldownForLeveling = 0.2f;
     private float xRangeNegative = -138;
     private float xRangePositive = 100;
     private float yRange = 100;
-    public PowerController powerController;
-    public BulletController bulletController;
+   
+    // bullet
+    [SerializeField] public float bulletDamage = 0.8f;
+    public float bulletFireRate = 0.07f;
+
+    // bomb
+    public int bombFireRate = 5;
+    public float bombDamage = 250f;
 
     // player
     public int playerHp = 3;
     public int bomb = 5;
-    public float bulletFirerate = 0.07f;
-    public float playerSpeed = 0.60f;
+    public float basePlayerSpeed = 0.30f;
+    public float playerSpeed;
     public GameObject healthPrefab;
     public GameObject bombsPrefab;
     private List<GameObject> health;
     private List<GameObject> bombs;
     public float power = 0;
     public int level = 0;
-   
+    public int powerForLevelUp = 13; // The amount of power needed for the first level up
+    private int powerPerLevel;
+    public float levelMax = 8;
+    public float bonusDamagePerLevel; // The amount of damage gained from levels
+    public bool isMaxLevel = false;
 
     void Start()
     {
-        BulletController bulletController = GetComponent<BulletController>();
+        powerPerLevel = powerForLevelUp;
+        bulletController = GetComponent<BulletController>();
+        powerController = GetComponent<PowerController>();
+
+        playerSpeed = basePlayerSpeed;
 
         // Player Health
         health = new List<GameObject>();
@@ -52,13 +73,11 @@ public class PlayerController : MonoBehaviour
         {
             bombs.Add(Instantiate(bombsPrefab, bombsUI.transform.position + u * new Vector3(10, 0, 0), bombsPrefab.transform.rotation));
         }
-
-        PowerController powerController = GetComponent<PowerController>();
     }
 
-    // Player collides with enemy
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // Player collides with enemy
         if (collision.gameObject.tag == "Enemy")
         {
             int i = health.Count - 1;
@@ -72,16 +91,26 @@ public class PlayerController : MonoBehaviour
         // If Player collects a power box, gives power to the player
         else if (collision.gameObject.tag == "SmallPower")
         {
+            GameObject fff = GameObject.Find("PowerController");
+            powerController = fff.GetComponent<PowerController>();
+
             power += powerController.smallPowerAmount;
+
+            var smallPowerBox = GameObject.FindWithTag("SmallPower");
+            Destroy(smallPowerBox);
         }
 
         else if (collision.gameObject.tag == "LargePower")
         {
+            GameObject fff = GameObject.Find("PowerController");
+            powerController = fff.GetComponent<PowerController>();
+
             power += powerController.largePowerAmount;
+
+            var largePowerBox = GameObject.FindWithTag("LargePower");
+            Destroy(largePowerBox);
         }
     }
-
-    
 
     void Update()
     {
@@ -119,39 +148,26 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                playerSpeed = 0.50f;
+                playerSpeed = basePlayerSpeed;
             }
 
             // Shooting
-            if (Input.GetButton("Fire") && canFire)
-            {
-                Fire();
-            }
-
-            void Fire()
+            if (Input.GetButton("Fire") && canFireBullet)
             {
                 Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
-                canFire = false;
+                canFireBullet = false;
                 StartCoroutine(WaitForFire());
-            }
-
-            IEnumerator WaitForFire()
-            {
-                yield return new WaitForSeconds(bulletFirerate);
-                canFire = true;
             }
 
             // Bomb
             if (Input.GetButton("Bomb") && bomb != 0)
             {
-                if (bomb != 0 && canFire)
+                if (bomb != 0 && canFireBomb)
                 {
                     GameObject bombObject = Instantiate(bombPrefab, transform.position, bombPrefab.transform.rotation);
-                    BulletController bombController = bombObject.GetComponent<BulletController>();
-                    bombController.Bomb();
                     bomb--;
-                    canFire = false;
-                    StartCoroutine(bombController.WaitForBomb());
+                    canFireBomb = false;
+                    StartCoroutine(WaitForBomb());
 
                     // Removes a bomb from player UI when player uses a bomb
                     int y = bombs.Count - 1;
@@ -159,6 +175,9 @@ public class PlayerController : MonoBehaviour
                     bombs.RemoveAt(y);
                 }
             }
+
+            // Leveling
+            PlayerLevel();
         }
 
         // Player is dead
@@ -170,5 +189,46 @@ public class PlayerController : MonoBehaviour
                 isAlive = false;
             }
         }
+    }
+
+    // Player leveling system
+    private void PlayerLevel()
+    {
+        if (power >= powerForLevelUp && isMaxLevel == false)
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                level++;
+                bulletDamage += bonusDamagePerLevel;
+                power -= powerForLevelUp;
+                powerForLevelUp += level + powerPerLevel;
+            }
+
+            if (level >= levelMax)
+            {
+                isMaxLevel = true;
+                level = 8;
+
+                // add crazy projectiles for bullet here
+            }
+
+            else if (level == 4)
+            {
+                // add projectile stuff here
+            }
+        }
+    }
+
+    private IEnumerator WaitForFire()
+    {
+        yield return new WaitForSeconds(bulletFireRate);
+        canFireBullet = true;
+    }
+
+    public IEnumerator WaitForBomb()
+    {
+        bulletController = GetComponent<BulletController>();
+        yield return new WaitForSeconds(bombFireRate);
+        canFireBomb = true;
     }
 }

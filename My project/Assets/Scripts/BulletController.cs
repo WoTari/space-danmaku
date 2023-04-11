@@ -8,7 +8,6 @@ public class BulletController : MonoBehaviour
 
     // bullet
     public float bulletSpeed = 100f;
-    public float bulletDamage = 0.001f;
 
     // other
     private float yRange = 100;
@@ -16,21 +15,13 @@ public class BulletController : MonoBehaviour
 
     // bomb
     public GameObject bombPrefab;
-    public float bombDamage = 250f;
-    public float bombFirerate = 5f;
     public float bombSpeed = 300f;
 
     public void Bomb()
     {
         GameObject player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
-        StartCoroutine(WaitForBomb());
-    }
-
-    public IEnumerator WaitForBomb()
-    {
-        yield return new WaitForSeconds(bombFirerate);
-        playerController.canFire = true;
+        StartCoroutine(playerController.WaitForBomb());
     }
 
     void Update()

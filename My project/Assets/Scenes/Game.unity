@@ -153,7 +153,7 @@ Transform:
   m_Children:
   - {fileID: 538666678}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &26513370
 GameObject:
@@ -608,10 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 100
-  bulletDamage: 0.5
-  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
-  bombDamage: 250
-  bombFirerate: 5
+  bombPrefab: {fileID: 0}
   bombSpeed: 300
 --- !u!4 &194599905
 Transform:
@@ -626,7 +623,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &232078120
 GameObject:
@@ -1646,7 +1643,7 @@ RectTransform:
   - {fileID: 1937440877}
   - {fileID: 895571320}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1825,7 +1822,7 @@ Transform:
   - {fileID: 1168448308}
   - {fileID: 760446909}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -2007,7 +2004,7 @@ RectTransform:
   - {fileID: 1751478312}
   - {fileID: 1699125601}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3030,60 +3027,6 @@ Transform:
   m_Father: {fileID: 495083869}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &766040937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 766040939}
-  - component: {fileID: 766040938}
-  m_Layer: 0
-  m_Name: Power System
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &766040938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766040937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41321748015aff47bcae1199afa4f57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerSmall: {fileID: 1549892271102059561, guid: eaded186c412cb6469e58ff700c7063a, type: 3}
-  powerLarge: {fileID: 2223933797950437767, guid: e23e085011fcc92409c8d267d2a1d216, type: 3}
-  destroyPowerAt: 30
-  smallPowerAmount: 1
-  smallPowerSpeed: 7
-  canSpawnSmallPower: 0
-  largePowerAmount: 10
-  largePowerSpeed: 15
-  canSpawnLargePower: 0
-  largePowerMovementSpeed: 0.09
---- !u!4 &766040939
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766040937}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92.289566, y: -107.645355, z: 3.9795957}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776798127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,14 +3453,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41321748015aff47bcae1199afa4f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerSmall: {fileID: 1549892271102059561, guid: eaded186c412cb6469e58ff700c7063a, type: 3}
-  powerLarge: {fileID: 2223933797950437767, guid: e23e085011fcc92409c8d267d2a1d216, type: 3}
+  powerSmall: {fileID: 3206818641514186021, guid: 8ca635173f7824444a74c41115564c27, type: 3}
+  powerLarge: {fileID: 3241150495699456, guid: 5bae8a0c59650ee46a7c58e49ec9cc25, type: 3}
   destroyPowerAt: 57
   smallPowerAmount: 1
-  smallPowerSpeed: 15
+  smallPowerSpeed: 7
   canSpawnSmallPower: 0
   largePowerAmount: 10
-  largePowerSpeed: 27
+  largePowerSpeed: 16
   canSpawnLargePower: 0
   largePowerMovementSpeed: 0.09
 --- !u!4 &851981845
@@ -3533,7 +3476,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860627521
 GameObject:
@@ -3726,7 +3669,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &892313964
 GameObject:
@@ -5321,7 +5264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168448305}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.3, y: 50.9, z: -2.5743084}
+  m_LocalPosition: {x: 53.8, y: 48.4, z: -2.5743084}
   m_LocalScale: {x: 8.005974, y: 4.1782813, z: 17.49105}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5338,7 +5281,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.10104859, y: 0.52033013}
@@ -5381,33 +5324,7 @@ MonoBehaviour:
   currentHp: 1000
   hpBar: {fileID: 1830939605}
   timer: {fileID: 892313965}
-  waypoints:
-  - {fileID: 1861898907}
-  - {fileID: 797252496}
-  - {fileID: 2008254089}
-  - {fileID: 265796032}
-  - {fileID: 2030290149}
-  - {fileID: 1507570606}
-  - {fileID: 1772853442}
-  - {fileID: 1477766569}
-  - {fileID: 2036016233}
-  - {fileID: 640863834}
-  - {fileID: 2018064638}
-  - {fileID: 1617440966}
-  - {fileID: 1110683842}
-  - {fileID: 713991232}
-  - {fileID: 452468391}
-  - {fileID: 1568905351}
-  - {fileID: 1116507418}
-  - {fileID: 1241462586}
-  - {fileID: 1794488610}
-  - {fileID: 1337591124}
-  - {fileID: 1017576389}
-  - {fileID: 1375623933}
-  - {fileID: 26513371}
-  - {fileID: 714817174}
-  - {fileID: 1199916554}
-  - {fileID: 1560393596}
+  waypoints: []
   moveSpeed: 75
 --- !u!1 &1199916553
 GameObject:
@@ -8629,20 +8546,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canFire: 1
-  isAlive: 1
-  bulletPrefab: {fileID: 6796695797676419104, guid: cf78589c6e03022439b8595b0dea4ad8, type: 3}
-  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
   powerController: {fileID: 851981844}
   bulletController: {fileID: 194599904}
+  bulletPrefab: {fileID: 6796695797676419104, guid: cf78589c6e03022439b8595b0dea4ad8, type: 3}
+  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
+  canFireBullet: 1
+  canFireBomb: 1
+  isAlive: 1
+  bulletDamage: 0.4
+  bulletFireRate: 0.07
+  bombFireRate: 5
+  bombDamage: 250
   playerHp: 3
   bomb: 5
-  bulletFirerate: 0.01
+  basePlayerSpeed: 0.3
   playerSpeed: 0.6
   healthPrefab: {fileID: 6746657180544921488, guid: a6d12fde41c5c1f4d88df264b0c5aae0, type: 3}
   bombsPrefab: {fileID: 193636884670506024, guid: 1dd3c4e2d21b0ef4e89d1d633bcfa0c9, type: 3}
-  power: 0
+  power: 1000
   level: 0
+  powerForLevelUp: 13
+  levelMax: 8
+  bonusDamagePerLevel: 0.1
+  isMaxLevel: 0
 --- !u!212 &1849354849
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9467,7 +9393,7 @@ Transform:
   - {fileID: 892313966}
   - {fileID: 2135655418}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937440876
 GameObject:
@@ -10495,6 +10421,73 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2103679150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103679152}
+  - component: {fileID: 2103679151}
+  m_Layer: 0
+  m_Name: PlayerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2103679151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103679150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerController: {fileID: 851981844}
+  bulletController: {fileID: 194599904}
+  bulletPrefab: {fileID: 6796695797676419104, guid: cf78589c6e03022439b8595b0dea4ad8, type: 3}
+  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
+  canFireBullet: 1
+  canFireBomb: 1
+  isAlive: 1
+  bulletDamage: 0.4
+  bulletFireRate: 0.07
+  bombFireRate: 5
+  bombDamage: 250
+  playerHp: 3
+  bomb: 5
+  basePlayerSpeed: 0.3
+  playerSpeed: 0.6
+  healthPrefab: {fileID: 6746657180544921488, guid: a6d12fde41c5c1f4d88df264b0c5aae0, type: 3}
+  bombsPrefab: {fileID: 193636884670506024, guid: 1dd3c4e2d21b0ef4e89d1d633bcfa0c9, type: 3}
+  power: 0
+  level: 0
+  powerForLevelUp: 13
+  levelMax: 8
+  bonusDamagePerLevel: 0
+  isMaxLevel: 0
+--- !u!4 &2103679152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103679150}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.381441, y: -39.125187, z: -6.1428895}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135655417
 GameObject:
   m_ObjectHideFlags: 0
