@@ -15,28 +15,26 @@ public class BulletController : MonoBehaviour
 
     // bomb
     public GameObject bombPrefab;
-<<<<<<< Updated upstream
-=======
+
     public float bombDamage = 250f;
     public float bombFireRate = 5f;
->>>>>>> Stashed changes
     public float bombSpeed = 300f;
 
-    public void Bomb()
+    void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
-<<<<<<< Updated upstream
-        StartCoroutine(playerController.WaitForBomb());
-=======
+    }
+
+    public void Bomb()
+    {
         StartCoroutine(WaitForBomb());
     }
 
     public IEnumerator WaitForBomb()
     {
         yield return new WaitForSeconds(bombFireRate);
-        playerController.canFire = true;
->>>>>>> Stashed changes
+        playerController.canFireBomb = true;
     }
 
     void Update()

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 500
-  bombPrefab: {fileID: 0}
+  bombPrefab: {fileID: 7175524449265843216}
   bombDamage: 200
   bombFireRate: 5
   bombSpeed: 300

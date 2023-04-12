@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public bool canFireBullet = true;
     public bool canFireBomb = true;
     public bool isAlive = true;
-    private float cooldownForLeveling = 0.2f;
     private float xRangeNegative = -138;
     private float xRangePositive = 100;
     private float yRange = 100;
@@ -34,13 +33,8 @@ public class PlayerController : MonoBehaviour
     // player
     public int playerHp = 3;
     public int bomb = 5;
-<<<<<<< Updated upstream
     public float basePlayerSpeed = 0.30f;
-    public float playerSpeed;
-=======
-    public float bulletFireRate = 0.07f;
     public float playerSpeed = 0.60f;
->>>>>>> Stashed changes
     public GameObject healthPrefab;
     public GameObject bombsPrefab;
     private List<GameObject> health;
@@ -58,9 +52,6 @@ public class PlayerController : MonoBehaviour
         powerPerLevel = powerForLevelUp;
         bulletController = GetComponent<BulletController>();
         powerController = GetComponent<PowerController>();
-
-        playerSpeed = basePlayerSpeed;
-
 
         // Player Health
         health = new List<GameObject>();
@@ -165,15 +156,12 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(WaitForFire());
             }
 
-<<<<<<< Updated upstream
-=======
             IEnumerator WaitForFire()
             {
                 yield return new WaitForSeconds(bulletFireRate);
-                canFire = true;
+                canFireBullet = true;
             }
 
->>>>>>> Stashed changes
             // Bomb
             if (Input.GetButton("Bomb") && bomb != 0)
             {

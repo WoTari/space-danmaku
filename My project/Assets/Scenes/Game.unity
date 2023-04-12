@@ -609,6 +609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 100
   bombPrefab: {fileID: 0}
+  bombDamage: 250
+  bombFireRate: 5
   bombSpeed: 300
 --- !u!4 &194599905
 Transform:
@@ -617,13 +619,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194599903}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.220875, y: 15.762612, z: -5.194655}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.276566, y: 10.739265, z: -7.7689633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1934990435}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &232078120
 GameObject:
@@ -2508,6 +2510,73 @@ Transform:
   m_Father: {fileID: 760446909}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &657461292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 657461293}
+  - component: {fileID: 657461294}
+  m_Layer: 0
+  m_Name: PlayerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &657461293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657461292}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 196.62106, y: -22.209133, z: -2.923212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1934990435}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &657461294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657461292}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerController: {fileID: 0}
+  bulletController: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bombPrefab: {fileID: 0}
+  canFireBullet: 1
+  canFireBomb: 1
+  isAlive: 1
+  bulletDamage: 0.8
+  bulletFireRate: 0.07
+  bombFireRate: 5
+  bombDamage: 250
+  playerHp: 3
+  bomb: 5
+  basePlayerSpeed: 0.3
+  playerSpeed: 0.6
+  healthPrefab: {fileID: 0}
+  bombsPrefab: {fileID: 0}
+  power: 0
+  level: 0
+  powerForLevelUp: 13
+  levelMax: 8
+  bonusDamagePerLevel: 0
+  isMaxLevel: 0
 --- !u!1 &660868294
 GameObject:
   m_ObjectHideFlags: 0
@@ -3453,8 +3522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41321748015aff47bcae1199afa4f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerSmall: {fileID: 3206818641514186021, guid: 8ca635173f7824444a74c41115564c27, type: 3}
-  powerLarge: {fileID: 3241150495699456, guid: 5bae8a0c59650ee46a7c58e49ec9cc25, type: 3}
+  powerSmall: {fileID: 776499305673812084, guid: c9b4dff0ef0cf734f915fa9e28eb0160, type: 3}
+  powerLarge: {fileID: 716517178694999347, guid: 7509a797efce851439d766588d138700, type: 3}
   destroyPowerAt: 57
   smallPowerAmount: 1
   smallPowerSpeed: 7
@@ -3470,13 +3539,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851981843}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.220875, y: 15.762612, z: -5.194655}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.276566, y: 10.739265, z: -7.7689633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1934990435}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860627521
 GameObject:
@@ -3663,13 +3732,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875409080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 68.49744, y: -5.023347, z: -2.5743084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1934990435}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &892313964
 GameObject:
@@ -7821,6 +7890,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724808156}
   m_CullTransparentMesh: 1
+--- !u!1 &1736752146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736752147}
+  - component: {fileID: 1736752148}
+  m_Layer: 0
+  m_Name: PlayerPower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1736752147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736752146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1934990435}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736752148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736752146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561349e881b79634fbc28c177e8bde14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerText: {fileID: 2007363438}
 --- !u!1 &1751478311
 GameObject:
   m_ObjectHideFlags: 0
@@ -8502,10 +8616,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849354850}
-  - component: {fileID: 1849354848}
   - component: {fileID: 1849354849}
   - component: {fileID: 1849354847}
   - component: {fileID: 1849354851}
+  - component: {fileID: 1849354852}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8534,41 +8648,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1849354848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849354846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerController: {fileID: 851981844}
-  bulletController: {fileID: 194599904}
-  bulletPrefab: {fileID: 6796695797676419104, guid: cf78589c6e03022439b8595b0dea4ad8, type: 3}
-  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
-  canFireBullet: 1
-  canFireBomb: 1
-  isAlive: 1
-  bulletDamage: 0.4
-  bulletFireRate: 0.07
-  bombFireRate: 5
-  bombDamage: 250
-  playerHp: 3
-  bomb: 5
-  basePlayerSpeed: 0.3
-  playerSpeed: 0.6
-  healthPrefab: {fileID: 6746657180544921488, guid: a6d12fde41c5c1f4d88df264b0c5aae0, type: 3}
-  bombsPrefab: {fileID: 193636884670506024, guid: 1dd3c4e2d21b0ef4e89d1d633bcfa0c9, type: 3}
-  power: 1000
-  level: 0
-  powerForLevelUp: 13
-  levelMax: 8
-  bonusDamagePerLevel: 0.1
-  isMaxLevel: 0
 --- !u!212 &1849354849
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8652,6 +8731,41 @@ CircleCollider2D:
   m_Offset: {x: -0.07105572, y: 0.09155589}
   serializedVersion: 2
   m_Radius: 0.07487234
+--- !u!114 &1849354852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849354846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerController: {fileID: 0}
+  bulletController: {fileID: 0}
+  bulletPrefab: {fileID: 4663579080720897668, guid: 0be01d09b2dc3c741ab771b2b6919657, type: 3}
+  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
+  canFireBullet: 1
+  canFireBomb: 1
+  isAlive: 1
+  bulletDamage: 0.8
+  bulletFireRate: 0.07
+  bombFireRate: 5
+  bombDamage: 250
+  playerHp: 3
+  bomb: 5
+  basePlayerSpeed: 0.3
+  playerSpeed: 0.6
+  healthPrefab: {fileID: 6746657180544921488, guid: a6d12fde41c5c1f4d88df264b0c5aae0, type: 3}
+  bombsPrefab: {fileID: 193636884670506024, guid: 1dd3c4e2d21b0ef4e89d1d633bcfa0c9, type: 3}
+  power: 0
+  level: 0
+  powerForLevelUp: 13
+  levelMax: 8
+  bonusDamagePerLevel: 0
+  isMaxLevel: 0
 --- !u!1 &1861898904
 GameObject:
   m_ObjectHideFlags: 0
@@ -9391,7 +9505,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 892313966}
-  - {fileID: 2135655418}
+  - {fileID: 851981845}
+  - {fileID: 194599905}
+  - {fileID: 657461293}
+  - {fileID: 875409083}
+  - {fileID: 1736752147}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9756,7 +9874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 76
+  m_text: 000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18396041832142a4d8a26b673d47542b, type: 2}
   m_sharedMaterial: {fileID: 6608726659850378704, guid: 18396041832142a4d8a26b673d47542b, type: 2}
@@ -9819,7 +9937,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 72.52583, y: 0, z: 18.108215, w: 19.312046}
+  m_margin: {x: 72.52583, y: 0, z: -32.472717, w: 19.312046}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10421,101 +10539,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2103679150
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2103679152}
-  - component: {fileID: 2103679151}
-  m_Layer: 0
-  m_Name: PlayerController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2103679151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103679150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d22026c0d8d619c42826ebc1326576e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerController: {fileID: 851981844}
-  bulletController: {fileID: 194599904}
-  bulletPrefab: {fileID: 6796695797676419104, guid: cf78589c6e03022439b8595b0dea4ad8, type: 3}
-  bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
-  canFireBullet: 1
-  canFireBomb: 1
-  isAlive: 1
-  bulletDamage: 0.4
-  bulletFireRate: 0.07
-  bombFireRate: 5
-  bombDamage: 250
-  playerHp: 3
-  bomb: 5
-  basePlayerSpeed: 0.3
-  playerSpeed: 0.6
-  healthPrefab: {fileID: 6746657180544921488, guid: a6d12fde41c5c1f4d88df264b0c5aae0, type: 3}
-  bombsPrefab: {fileID: 193636884670506024, guid: 1dd3c4e2d21b0ef4e89d1d633bcfa0c9, type: 3}
-  power: 0
-  level: 0
-  powerForLevelUp: 13
-  levelMax: 8
-  bonusDamagePerLevel: 0
-  isMaxLevel: 0
---- !u!4 &2103679152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103679150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.381441, y: -39.125187, z: -6.1428895}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2135655417
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2135655418}
-  m_Layer: 0
-  m_Name: Power
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2135655418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2135655417}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1934990435}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
