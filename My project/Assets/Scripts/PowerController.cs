@@ -9,16 +9,19 @@ public class PowerController : MonoBehaviour
     public GameObject powerSmall;
     public GameObject powerLarge;
 
-    public float destroyPowerAt = 57f;
-
+    // Small Power Variables
     public float smallPowerAmount = 1.00f;
     public int smallPowerSpeed = 15;
     public bool canSpawnSmallPower = false;
+    public float smallPowerXPosition;
+    public bool canGetRandomSmallPowerPos;
 
+    // Large Power variables
     public int largePowerAmount = 10;
     public int largePowerSpeed = 27;
     public bool canSpawnLargePower = false;
-    public float largePowerMovementSpeed = 0.09f;
+    public float largePowerXPosition;
+    public bool canGetRandomLargePowerPos;
 
     private void Start()
     {
@@ -29,6 +32,8 @@ public class PowerController : MonoBehaviour
     {
         PowerSmall();
         PowerLarge();
+        LargePowerRandomPos();
+        SmallPowerRandomPos();
     }
 
     // Small Power
@@ -42,6 +47,8 @@ public class PowerController : MonoBehaviour
             StartCoroutine(SmallPowerCooldown());
         }
     }
+
+    // Delay for the small power box spawns
     IEnumerator SmallPowerCooldown()
     {
         yield return new WaitForSeconds(smallPowerSpeed);
@@ -59,10 +66,37 @@ public class PowerController : MonoBehaviour
             StartCoroutine(LargePowerCooldown());
         }
     }
+
+    // Delay for the large power box spawns
     IEnumerator LargePowerCooldown()
     {
         yield return new WaitForSeconds(largePowerSpeed);
         canSpawnLargePower = true;
     }
 
+    IEnumerator LargePowerRandomPosCooldown()
+    {
+        yield return new WaitForSeconds(largePowerSpeed);
+        canGetRandomLargePowerPos = true;
+    }
+
+    IEnumerator SmallPowerRandomPosCooldown()
+    {
+        yield return new WaitForSeconds(smallPowerSpeed);
+        canGetRandomSmallPowerPos = true;
+    }
+
+    public void LargePowerRandomPos()
+    {
+        largePowerXPosition = Random.Range(-10f, 10f);
+        canGetRandomLargePowerPos = false;
+        StartCoroutine(LargePowerRandomPosCooldown());
+    }
+
+    public void SmallPowerRandomPos()
+    {
+        smallPowerXPosition = Random.Range(-10f, 10f);
+        canGetRandomSmallPowerPos = false;
+        StartCoroutine(SmallPowerRandomPosCooldown());
+    }
 }

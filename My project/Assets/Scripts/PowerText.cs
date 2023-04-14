@@ -16,7 +16,6 @@ public class PowerText : MonoBehaviour
 
     void Update()
     {
-
         powerText.text = playerController.power.ToString("f0");
     }
 }

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public BulletController bulletController;
     public GameObject bulletPrefab;
     public GameObject bombPrefab;
+    private Animator anim;
 
     public bool canFireBullet = true;
     public bool canFireBomb = true;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float xRangeNegative = -138;
     private float xRangePositive = 100;
     private float yRange = 100;
-   
+
     // bullet
     [SerializeField] public float bulletDamage = 0.8f;
     public float bulletFireRate = 0.07f;
@@ -39,10 +40,13 @@ public class PlayerController : MonoBehaviour
     public GameObject bombsPrefab;
     private List<GameObject> health;
     private List<GameObject> bombs;
+
+    // Player leveling variables
     public float power = 0;
-    public int level = 0;
-    public int powerForLevelUp = 13; // The amount of power needed for the first level up
-    private int powerPerLevel;
+    public float powerMax = 9999;
+    public float level = 0;
+    public float powerForLevelUp = 13; // The amount of power needed for the first level up
+    private float powerPerLevel;
     public float levelMax = 8;
     public float bonusDamagePerLevel; // The amount of damage gained from levels
     public bool isMaxLevel = false;
@@ -52,6 +56,8 @@ public class PlayerController : MonoBehaviour
         powerPerLevel = powerForLevelUp;
         bulletController = GetComponent<BulletController>();
         powerController = GetComponent<PowerController>();
+
+        anim = GetComponent<Animator>();
 
         // Player Health
         health = new List<GameObject>();
@@ -65,7 +71,7 @@ public class PlayerController : MonoBehaviour
         // Player Bombs
         bombs = new List<GameObject>();
         GameObject bombsUI = GameObject.Find("PlayerBombs");
-        
+
         for (int u = 0; u < bomb; u++)
         {
             bombs.Add(Instantiate(bombsPrefab, bombsUI.transform.position + u * new Vector3(10, 0, 0), bombsPrefab.transform.rotation));
@@ -84,31 +90,7 @@ public class PlayerController : MonoBehaviour
             Destroy(health[i]);
             health.RemoveAt(i);
         }
-
-        // If Player collects a power box, gives power to the player
-        else if (collision.gameObject.tag == "SmallPower")
-        {
-            GameObject fff = GameObject.Find("PowerController");
-            powerController = fff.GetComponent<PowerController>();
-
-            power += powerController.smallPowerAmount;
-
-            var smallPowerBox = GameObject.FindWithTag("SmallPower");
-            Destroy(smallPowerBox);
-        }
-
-        else if (collision.gameObject.tag == "LargePower")
-        {
-            GameObject fff = GameObject.Find("PowerController");
-            powerController = fff.GetComponent<PowerController>();
-
-            power += powerController.largePowerAmount;
-
-            var largePowerBox = GameObject.FindWithTag("LargePower");
-            Destroy(largePowerBox);
-        }
     }
-
     void Update()
     {
         // Game Border
@@ -139,10 +121,16 @@ public class PlayerController : MonoBehaviour
             transform.Translate(0, vertical, 0);
             transform.Translate(horizontal, 0, 0);
 
+            // Sets the value of the Direction parameter according to which way the player is moving horizontally
+            anim.SetFloat("Direction", horizontal);
+
+            // Slows down the player's movement speed when player pressed the given button
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 playerSpeed = playerSpeed / 3;
             }
+
+            // Returns the movement to normal when player lets go of the given button
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 playerSpeed = basePlayerSpeed;
@@ -183,36 +171,38 @@ public class PlayerController : MonoBehaviour
             PlayerLevel();
         }
 
-        // Player is dead
-        else
-        {
-            if (isAlive)
+            // Player is dead
+            else
             {
-                Debug.Log("game over idiot");
-                isAlive = false;
+                if (isAlive)
+                {
+                    Debug.Log("game over idiot");
+                    isAlive = false;
+                }
             }
-        }
-    }
+        }    
 
     // Player leveling system
-    private void PlayerLevel()
+    void PlayerLevel()
     {
         if (power >= powerForLevelUp && isMaxLevel == false)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (level >= levelMax)
+            {
+                isMaxLevel = true;
+                level = levelMax;
+
+                // add crazy projectiles for bullet here
+            }
+
+            else if (Input.GetKeyDown(KeyCode.C))
             {
                 level++;
                 bulletDamage += bonusDamagePerLevel;
                 power -= powerForLevelUp;
                 powerForLevelUp += level + powerPerLevel;
-            }
 
-            if (level >= levelMax)
-            {
-                isMaxLevel = true;
-                level = 8;
-
-                // add crazy projectiles for bullet here
+                // projectiles here
             }
 
             else if (level == 4)
@@ -222,16 +212,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForFire()
+    IEnumerator WaitForFire()
     {
         yield return new WaitForSeconds(bulletFireRate);
         canFireBullet = true;
     }
 
-    public IEnumerator WaitForBomb()
+    IEnumerator WaitForBomb()
     {
         bulletController = GetComponent<BulletController>();
         yield return new WaitForSeconds(bombFireRate);
         canFireBomb = true;
     }
-}
+}   

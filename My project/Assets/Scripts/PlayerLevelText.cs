@@ -16,6 +16,14 @@ public class PlayerLevelText : MonoBehaviour
     void Update()
     {
         // Shows the players current level
-        playerLevelText.text = playerController.level.ToString("1f") + " /" + playerController.levelMax;
+        if (playerController.level != playerController.levelMax)
+        {
+            playerLevelText.text = playerController.level.ToString() + " / " + playerController.levelMax;
+        }
+
+        else
+        {
+            playerLevelText.text = "Max!";
+        }
     }
 }
