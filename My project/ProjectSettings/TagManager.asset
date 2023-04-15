@@ -9,6 +9,7 @@ TagManager:
   - PlayerBomb
   - LargePower
   - SmallPower
+  - Repeating Image
   layers:
   - Default
   - TransparentFX
