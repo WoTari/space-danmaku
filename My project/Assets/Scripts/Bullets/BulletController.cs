@@ -6,6 +6,8 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     private PlayerController playerController;
+    private GameObject enemy;
+    public float turnSpeed;
 
     // bullet
     public float bulletSpeed = 100f;
@@ -13,7 +15,6 @@ public class BulletController : MonoBehaviour
 
     // other
     private float yRange = 100;
-    private float xRange = 100;
 
     // bomb
     public GameObject bombPrefab;
@@ -24,6 +25,7 @@ public class BulletController : MonoBehaviour
 
     void Start()
     {
+        enemy = GameObject.Find("Enemy");
         GameObject player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
     }
@@ -41,7 +43,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && gameObject.tag == "PlayerProjectile")
         {
             Destroy(gameObject);
         }
@@ -50,17 +52,12 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         // Bullet movement
-           transform.Translate(Vector3.up * Time.deltaTime * bulletSpeed);
+        transform.Translate(Vector3.up * Time.deltaTime * bulletSpeed);
 
         // Bullet gets destroyed when ít goes past the boundaries of the game
         if (transform.position.y >= yRange)
         {
             Destroy(gameObject);
-
-            if (transform.position.x >= xRange)
-            {
-                Destroy(gameObject);
-            }
         }
     }
 }

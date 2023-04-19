@@ -2039,8 +2039,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9, y: 22.9}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 2.9010313, y: 22.9}
+  m_SizeDelta: {x: 100.002075, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
@@ -2507,8 +2507,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291555327
-  m_fontColor: {r: 1, g: 0.9372549, b: 0.79607844, a: 1}
+    rgba: 4283367301
+  m_fontColor: {r: 0.52156866, g: 1, b: 0.30588236, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -2727,12 +2727,16 @@ MonoBehaviour:
   powerController: {fileID: 0}
   bulletController: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  homingBulletPrefab: {fileID: 0}
   bombPrefab: {fileID: 0}
   canFireBullet: 1
+  canFireHomingBullet: 1
   canFireBomb: 1
   isAlive: 1
   bulletDamage: 0.8
   bulletFireRate: 0.07
+  homingBulletFireRate: 0.15
+  bulletSpeed: 10
   bombFireRate: 5
   bombDamage: 250
   playerHp: 3
@@ -5884,9 +5888,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10104859, y: 0.52033013}
+  m_Offset: {x: -0.17348476, y: 0.52033013}
   serializedVersion: 2
-  m_Radius: 2.061215
+  m_Radius: 1.7946182
 --- !u!50 &1168448312
 Rigidbody2D:
   serializedVersion: 4
@@ -7822,8 +7826,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291555327
-  m_fontColor: {r: 1, g: 0.9372549, b: 0.79607844, a: 1}
+    rgba: 4283789311
+  m_fontColor: {r: 1, g: 0.4350293, b: 0.3339622, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -9539,12 +9543,16 @@ MonoBehaviour:
   powerController: {fileID: 851981844}
   bulletController: {fileID: 0}
   bulletPrefab: {fileID: 4663579080720897668, guid: 0be01d09b2dc3c741ab771b2b6919657, type: 3}
+  homingBulletPrefab: {fileID: 4663579080720897668, guid: 62bf311f4eb2b134099b21e9680c3783, type: 3}
   bombPrefab: {fileID: 7175524449265843216, guid: 4161db553095b514296bf71a5fb3c31e, type: 3}
   canFireBullet: 1
+  canFireHomingBullet: 1
   canFireBomb: 1
   isAlive: 1
   bulletDamage: 0.8
   bulletFireRate: 0.07
+  homingBulletFireRate: 0.4
+  bulletSpeed: 10
   bombFireRate: 5
   bombDamage: 250
   playerHp: 3
@@ -9557,7 +9565,7 @@ MonoBehaviour:
   bombsPrefab: {fileID: 193636884670506024, guid: 1dd3c4e2d21b0ef4e89d1d633bcfa0c9, type: 3}
   power: 0
   powerMax: 9999
-  level: 0
+  level: 8
   powerForLevelUp: 13
   levelMax: 8
   bonusDamagePerLevel: 0

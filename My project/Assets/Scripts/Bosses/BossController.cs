@@ -15,6 +15,8 @@ public class BossController : MonoBehaviour
 
     void Start()
     {
+        GameObject player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -22,8 +24,6 @@ public class BossController : MonoBehaviour
         // Takes hp away from enemy if player hits them with a bullet
         if (collider.gameObject.tag == "PlayerProjectile")
         {
-            GameObject player = GameObject.Find("Player");
-            playerController = player.GetComponent<PlayerController>();
             currentHp -= playerController.bulletDamage;
             hpBar.SetMaxHp(currentHp);
         }

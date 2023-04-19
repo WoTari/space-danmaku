@@ -6,6 +6,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerController : MonoBehaviour
@@ -14,11 +15,13 @@ public class PlayerController : MonoBehaviour
     public PowerController powerController;
     public BulletController bulletController;
     public GameObject bulletPrefab;
+    public GameObject homingBulletPrefab;
     public GameObject bombPrefab;
     private Animator anim;
-
+    private GameObject enemy;
 
     public bool canFireBullet = true;
+    public bool canFireHomingBullet = true;
     public bool canFireBomb = true;
     public bool isAlive = true;
     private float xRangeNegative = -138;
@@ -28,10 +31,9 @@ public class PlayerController : MonoBehaviour
     // bullet
     public float bulletDamage = 0.8f;
     public float bulletFireRate = 0.07f;
-    public GameObject playerBullet;
-    public GameObject playerBullet2;
-    private float n = 1f;
-    private float m = 1f;
+    public float homingBulletFireRate = 0.15f;
+    public float bulletSpeed = 10f;
+    private GameObject playerBullet;
 
     // bomb
     public int bombFireRate = 5;
@@ -66,6 +68,8 @@ public class PlayerController : MonoBehaviour
         bulletController = GetComponent<BulletController>();
         powerController = GetComponent<PowerController>();
         anim = GetComponent<Animator>();
+
+        enemy = GameObject.Find("Enemy");
 
         // Player Health
         health = new List<GameObject>();
@@ -153,15 +157,20 @@ public class PlayerController : MonoBehaviour
             // Shooting
             if (Input.GetButton("Fire") && canFireBullet)
             {
-                Shooting();
+                Shoot();
+                ShootHomingBullet();
                 canFireBullet = false;
                 StartCoroutine(WaitForFire());
             }
 
-            IEnumerator WaitForFire()
+            if (level == levelMax)
             {
-                yield return new WaitForSeconds(bulletFireRate);
-                canFireBullet = true;
+                if (Input.GetButton("Fire") && canFireBullet)
+                {
+                    ShootHomingBullet();
+                    canFireHomingBullet = false;
+                    StartCoroutine(WaitForHomingFire());
+                }
             }
 
             // Bomb
@@ -194,11 +203,33 @@ public class PlayerController : MonoBehaviour
             isAlive = false;
         }
     }
+    private IEnumerator WaitForHomingFire()
+    {
+        yield return new WaitForSeconds(homingBulletFireRate);
+        canFireHomingBullet = true;
+    }
+    private IEnumerator WaitForFire()
+    {
+        yield return new WaitForSeconds(bulletFireRate);
+        canFireBullet = true;
+    }
 
     // Player shooting system
-    private void Shooting()
+    void Shoot()
     {
-        playerBullet = Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+    }
+    void ShootHomingBullet()
+    {
+        GameObject bullet = Instantiate(homingBulletPrefab, transform.position, Quaternion.identity);
+        GameObject bullet2 = Instantiate(homingBulletPrefab, transform.position, Quaternion.identity);
+        HomingBulletController bulletController1 = bullet.GetComponent<HomingBulletController>();
+        HomingBulletController bulletController2 = bullet2.GetComponent<HomingBulletController>();
+
+        // Launch bullet forward with initial velocity
+        bulletController1.Launch(Vector3.up, Vector3.right * 5.25f, enemy);  // Y-axis, towards the top of screen
+        bulletController2.Launch(Vector3.up, Vector3.left * 5.25f, enemy);  // Y-axis, towards the top of screen
     }
 
     // Player leveling system
@@ -221,6 +252,16 @@ public class PlayerController : MonoBehaviour
                 power -= powerForLevelUp;
                 powerForLevelUp += level + powerPerLevel;
             }
+        }
+
+        if (level == 4)
+        {
+
+        }
+
+        if (level == 6)
+        {
+
         }
     }
 
